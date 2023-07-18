@@ -139,7 +139,6 @@ int64x2_t vaddl_s32(int32x2_t a, int32x2_t b);
 uint16x8_t vaddl_u8(uint8x8_t a, uint8x8_t b);
 uint32x4_t vaddl_u16(uint16x4_t a, uint16x4_t b);
 uint64x2_t vaddl_u32(uint32x2_t a, uint32x2_t b);
-
 ```
 
 **调用示例：**
@@ -181,14 +180,26 @@ result: 16 18 20 22 24 26 28 30
 
 <br>
 
-**5. vaddw_<数据类型简写>**
+**4. vaddw_<类型简写>**
 
-**说明：** 宽指令；a和b通道数相同，a的位数是b的两倍，结果位数与操作数a相同。
+**说明：** 宽指令；a和b相加（a的数据位数是b的两倍，通道数相同，结果位数与a相同）。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int16x8_t vaddw_s8(int16x8_t a, int8x8_t b)
+int16x8_t vaddw_s8(int16x8_t a, int8x8_t b);
+int32x4_t vaddw_s16(int32x4_t a, int16x4_t b);
+int64x2_t vaddw_s32(int64x2_t a, int32x2_t b);
+uint16x8_t vaddw_u8(uint16x8_t a, uint8x8_t b);
+uint32x4_t vaddw_u16(uint32x4_t a, uint16x4_t b);
+uint64x2_t vaddw_u32(uint64x2_t a, uint32x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int16x8_t result = vaddw_s8(a, b);
+
 a:      256 257 258 259 260 261 262 263
 b:      120 121 122 123 124 125 126 127
 result: 376 378 380 382 384 386 388 390

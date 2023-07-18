@@ -98,10 +98,10 @@ void test_vaddl_high_s8() {
 void test_vaddw_s8() {
     std::shared_ptr<int8_t> d_int8 = create_data<int8_t>(8, 120);
     std::shared_ptr<int16_t> d_int16 = create_data<int16_t>(8, 256);
-    int16x8_t op1 = vld1q_s16(d_int16.get());
-    int8x8_t op2 = vld1_s8(d_int8.get());
-    int16x8_t res = vaddw_s8(op1, op2);
-    print_op2(8, &op1, 8, &op2, 8, &res);
+    int16x8_t a = vld1q_s16(d_int16.get());
+    int8x8_t b = vld1_s8(d_int8.get());
+    int16x8_t res = vaddw_s8(a, b);
+    print_op2(8, &a, 8, &b, 8, &res);
 }
 
 void test_vaddw_high_s8() {
@@ -326,7 +326,7 @@ void test_vmlsq_s8() {
 int main(int argc, char** argv) {
     //test_vaddq_s8();
     //test_vaddl_s8();
-    test_vaddl_high_s8();
+    //test_vaddl_high_s8();
     //test_vaddw_s8();
     //test_vaddw_high_s8();
     //test_vhadd_s8();
