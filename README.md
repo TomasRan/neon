@@ -117,7 +117,7 @@ float64x2_t vaddq_f64(float64x2_t a, float64x2_t b);
 **调用示例：**
 
 ```cpp
-vaddq_s8(a, b);
+int8x16_t result = vaddq_s8(a, b);
 
 a:      60  61  62  63  64   65   66   67   68   69   70   71   72   73   74   75
 b:      60  61  62  63  64   65   66   67   68   69   70   71   72   73   74   75
@@ -128,7 +128,7 @@ result: 120 122 124 126 -128 -126 -124 -122 -120 -118 -116 -114 -112 -110 -108 -
 
 **2. vaddl_<类型简写>**
 
-**说明：** 长指令；128位整型数据相加，结果数据是操作数位数的两倍。
+**说明：** 长指令；64位整型数据相加，结果数据是操作数位数的两倍。
 
 **函数原型：**
 
@@ -145,7 +145,7 @@ uint64x2_t vaddl_u32(uint32x2_t a, uint32x2_t b);
 **调用示例：**
 
 ```cpp
-vaddl_s8(a, b);
+int16x8_t result = vaddl_s8(a, b);
 
 a:      60  61  62  63  64  65  66  67
 b:      60  61  62  63  64  65  66  67
@@ -154,16 +154,26 @@ result: 120 122 124 126 128 130 132 134
 
 <br>
 
-**3. vaddl_high_<数据类型简写>**
+**3. vaddl_high_<类型简写>**
 
 **说明：** 长指令；a和b的后半元素（高位数据）相加，结果位数扩大两倍存储。
 
 **函数原型：**
 
+```cpp
+int16x8_t vaddl_high_s8(int8x16_t a, int8x16_t b);
+int32x4_t vaddl_high_s16(int16x8_t a, int16x8_t b);
+int64x2_t vaddl_high_s32(int32x4_t a, int32x4_t b);
+uint16x8_t vaddl_high_u8(uint8x16_t a, uint8x16_t b);
+uint32x4_t vaddl_high_u16(uint16x8_t a, uint16x8_t b);
+uint64x2_t vaddl_high_u32(uint32x4_t a, uint32x4_t b);
+```
+
 **调用示例：**
 
 ```cpp
-int16x8_t vaddl_high_s8(int8x16_t a, int8x16_t b)
+int16x8_t result = vaddl_high_s8(a, b);
+
 a:      0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
 b:      0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
 result: 16 18 20 22 24 26 28 30
