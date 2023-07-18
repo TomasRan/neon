@@ -155,7 +155,7 @@ result: 120 122 124 126 128 130 132 134
 
 **3. vaddl_high_<类型简写>**
 
-**说明：** 长指令；a和b的后半元素（高位数据）相加，结果位数扩大两倍存储。
+**说明：** 长指令；a和b的后半部分元素相加，结果位数扩大两倍存储。
 
 **函数原型：**
 
@@ -207,14 +207,26 @@ result: 376 378 380 382 384 386 388 390
 
 <br>
 
-**6. vaddw_high_<数据类型简写>**
+**4. vaddw_high_<类型简写>**
 
-**说明：** 宽指令；a的元素加上b的后半部分（高位）对应位置元素。
+**说明：** 宽指令；a的元素加上b的后半部分对应位置元素。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int16x8_t vaddw_high_s8(int16x8_t a, int8x16_t b)
+int16x8_t vaddw_high_s8(int16x8_t a, int8x16_t b);
+int32x4_t vaddw_high_s16(int32x4_t a, int16x8_t b);
+int64x2_t vaddw_high_s32(int64x2_t a, int32x4_t b);
+uint16x8_t vaddw_high_u8(uint16x8_t a, uint8x16_t b);
+uint32x4_t vaddw_high_u16(uint32x4_t a, uint16x8_t b);
+uint64x2_t vaddw_high_u32(uint64x2_t a, uint32x4_t b);
+```
+
+**调用示例：**
+
+```cpp
+int16x8_t result = vaddw_high_s8(a, b);
+
 a:      0  1  2  3  4  5  6  7
 b:      0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
 result: 8  10 12 14 16 18 20 22
