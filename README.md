@@ -207,7 +207,7 @@ result: 376 378 380 382 384 386 388 390
 
 <br>
 
-**4. vaddw_high_<类型简写>**
+**5. vaddw_high_<类型简写>**
 
 **说明：** 宽指令；a的元素加上b的后半部分对应位置元素。
 
@@ -234,19 +234,33 @@ result: 8  10 12 14 16 18 20 22
 
 <br>
 
-**7. vhadd_<数据类型简写> （64bit）/ vhaddq_<数据类型简写> （128bit）**
+**6. vhadd_<类型简写>  /  vhaddq_<类型简写>**
 
 **说明：** a和b对应通道元素相加，并将所加结果右移一位存储，向下取整。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x8_t vhadd_s8(int8x8_t a, int8x8_t b)
-a:      5  6  7  8  9  10 11 12
-b:      10 11 12 13 14 15 16 17
-result: 7  8  9  10 11 12 13 14
+int8x8_t vhadd_s8(int8x8_t a, int8x8_t b);
+int16x4_t vhadd_s16(int16x4_t a, int16x4_t b);
+int32x2_t vhadd_s32(int32x2_t a, int32x2_t b);
+uint8x8_t vhadd_u8(uint8x8_t a, uint8x8_t b);
+uint16x4_t vhadd_u16(uint16x4_t a, uint16x4_t b);
+uint32x2_t vhadd_u32(uint32x2_t a, uint32x2_t b);
 
-int8x16_t vhaddq_s8(int8x16_t a, int8x16_t b)
+int8x16_t vhaddq_s8(int8x16_t a, int8x16_t b);
+int16x8_t vhaddq_s16(int16x8_t a, int16x8_t b);
+int32x4_t vhaddq_s32(int32x4_t a, int32x4_t b);
+uint8x16_t vhaddq_u8(uint8x16_t a, uint8x16_t b);
+uint16x8_t vhaddq_u16(uint16x8_t a, uint16x8_t b);
+uint32x4_t vhaddq_u32(uint32x4_t a, uint32x4_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vhaddq_s8(a, b);
+
 a:      60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
 b:      73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88
 result: 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81
@@ -254,11 +268,29 @@ result: 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81
 
 <br>
 
-**8. vrhadd_<数据类型简写> （64bit）/ vrhaddq_<数据类型简写> （128bit）**
+**7. vrhadd_<类型简写>  /  vrhaddq_<类型简写>**
 
 **说明：** a和b对应通道元素相加，并将所加结果右移一位存储，向上取整。
 
-调用示例：
+**函数原型：**
+
+```cpp
+int8x8_t vrhadd_s8(int8x8_t a, int8x8_t b);	
+int16x4_t vrhadd_s16(int16x4_t a, int16x4_t b);
+int32x2_t vrhadd_s32(int32x2_t a, int32x2_t b);
+uint8x8_t vrhadd_u8(uint8x8_t a, uint8x8_t b);
+uint16x4_t vrhadd_u16(uint16x4_t a, uint16x4_t b);
+uint32x2_t vrhadd_u32(uint32x2_t a, uint32x2_t b);
+
+int8x16_t vrhaddq_s8(int8x16_t a, int8x16_t b);
+int16x8_t vrhaddq_s16(int16x8_t a, int16x8_t b);
+int32x4_t vrhaddq_s32(int32x4_t a, int32x4_t b);
+uint8x16_t vrhaddq_u8(uint8x16_t a, uint8x16_t b);
+uint16x8_t vrhaddq_u16(uint16x8_t a, uint16x8_t b);
+uint32x4_t vrhaddq_u32(uint32x4_t a, uint32x4_t b);
+```
+
+**调用示例：**
 
 ```cpp
 int8x8_t vrhadd_s8(int8x8_t a, int8x8_t b)
