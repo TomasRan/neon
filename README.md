@@ -514,7 +514,7 @@ result: 120 121 122 123 124 125 126 127 3 3 3 3 3 3 3 3
 
 **1.  vmul_<类型简写>  /  vmulq_<类型简写>**
 
-**说明：** 对应通道的数据相乘。
+**说明：** 两个向量对应通道的数据相乘。
 
 **函数原型：**
 
@@ -550,11 +550,21 @@ result: 20 30 42 56 72 90 110 -124
 
 <br>
 
-**2. vmulx_<数据类型简写> （64bit）/ vmulxq_<数据类型简写> （128bit）**
+**2. vmulx_<数据类型>  /  vmulxq_<类型简写>**
 
-**说明：** 对应通道的浮点数相乘。
+**说明：** 两个向量对应通道的浮点数相乘。
 
-调用示例：
+**函数原型：**
+
+```cpp
+float32x2_t vmulx_f32(float32x2_t a, float32x2_t b);
+float64x1_t vmulx_f64(float64x1_t a, float64x1_t b);
+
+float32x4_t vmulxq_f32(float32x4_t a, float32x4_t b);
+float64x2_t vmulxq_f64(float64x2_t a, float64x2_t b);
+```
+
+**调用示例：**
 
 ```cpp
 float32x4_t vmulxq_f32(float32x4_t a, float32x4_t b)
@@ -566,18 +576,28 @@ result: 110 132 156 182
 
 <br>
 
-**vmulx_lane_<数据类型简写> / vmulxq_lane_<数据类型简写>**
+**3. vmulx_lane_<类型简写>  /  vmulxq_lane_<类型简写>**
 
-**说明：** a的元素和b指定通道的元素相乘。
+**说明：** 向量a的元素和向量b中指定通道的元素相乘。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-float32x4_t vmulxq_lane_f32(float32x4_t a, float32x2_t b, const int lane)
+float32x2_t vmulx_lane_f32(float32x2_t a, float32x2_t v, const int lane);
+float64x1_t vmulx_lane_f64(float64x1_t a, float64x1_t v, const int lane);
 
-a:      10  11  12  13
-b:      11  12
-result: 120 132 144 156
+float32x4_t vmulxq_lane_f32(float32x4_t a, float32x2_t v, const int lane);
+float64x2_t vmulxq_lane_f64(float64x2_t a, float64x1_t v, const int lane);
+```
+
+**调用示例：**
+
+```cpp
+float32x4_t result = vmulxq_lane_f32(a, b, 1);
+
+a:      10   11  12  13
+b:      11   12
+result: 120  132  144 156
 ```
 
 <br>

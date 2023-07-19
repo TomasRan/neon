@@ -210,19 +210,19 @@ void test_vmulq_u8() {
 void test_vmulxq_f32() {
     std::shared_ptr<float> d_float_1 = create_data<float>(4, 10.0);
     std::shared_ptr<float> d_float_2 = create_data<float>(4, 11.0);
-    float32x4_t op1 = vld1q_f32(d_float_1.get());
-    float32x4_t op2 = vld1q_f32(d_float_2.get());
-    float32x4_t res = vmulxq_f32(op1, op2);
-    print_op2(4, &op1, 4, &op2, 4, &res);
+    float32x4_t a = vld1q_f32(d_float_1.get());
+    float32x4_t b = vld1q_f32(d_float_2.get());
+    float32x4_t res = vmulxq_f32(a, b);
+    print_op2(4, &a, 4, &b, 4, &res);
 }
 
 void test_vmulxq_lane_f32() {
     std::shared_ptr<float> d_float_1 = create_data<float>(4, 10.0);
     std::shared_ptr<float> d_float_2 = create_data<float>(2, 11.0);
-    float32x4_t op1 = vld1q_f32(d_float_1.get());
-    float32x2_t op2 = vld1_f32(d_float_2.get());
-    float32x4_t res = vmulxq_lane_f32(op1, op2, 1);
-    print_op2(4, &op1, 2, &op2, 4, &res);
+    float32x4_t a = vld1q_f32(d_float_1.get());
+    float32x2_t b = vld1_f32(d_float_2.get());
+    float32x4_t res = vmulxq_lane_f32(a, b, 1);
+    print_op2(4, &a, 2, &b, 4, &res);
 }
 
 void test_vdivq_f32() {
