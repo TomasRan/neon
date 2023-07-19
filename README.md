@@ -275,7 +275,7 @@ result: 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81
 **函数原型：**
 
 ```cpp
-int8x8_t vrhadd_s8(int8x8_t a, int8x8_t b);	
+int8x8_t vrhadd_s8(int8x8_t a, int8x8_t b); 
 int16x4_t vrhadd_s16(int16x4_t a, int16x4_t b);
 int32x2_t vrhadd_s32(int32x2_t a, int32x2_t b);
 uint8x8_t vrhadd_u8(uint8x8_t a, uint8x8_t b);
@@ -293,12 +293,8 @@ uint32x4_t vrhaddq_u32(uint32x4_t a, uint32x4_t b);
 **调用示例：**
 
 ```cpp
-int8x8_t vrhadd_s8(int8x8_t a, int8x8_t b)
-a:      5  6  7  8  9  10 11 12
-b:      10 11 12 13 14 15 16 17
-result: 8  9  10 11 12 13 14 15
+int8x16_t result = vrhaddq_s8(a, b);
 
-int8x16_t vrhaddq_s8(int8x16_t a, int8x16_t b)
 a:      60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75
 b:      73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88
 result: 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82
@@ -306,19 +302,37 @@ result: 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82
 
 <br>
 
-**9. vqadd_<数据类型简写> （64bit）/ vqaddq_<数据类型简写> （128bit）**
+**8. vqadd_<类型简写>  /  vqaddq_<类型简写>**
 
 **说明：** 饱和指令；a和b对应通道元素相加，超出范围则自动限制在该数据类型表示范围内。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x8_t vqadd_s8(int8x8_t a, int8x8_t b)
-a:      62  63  64  65  66  67  68  69
-b:      63  64  65  66  67  68  69  70
-result: 125 127 127 127 127 127 127 127
+int8x8_t vqadd_s8(int8x8_t a, int8x8_t b);
+int16x4_t vqadd_s16(int16x4_t a, int16x4_t b);
+int32x2_t vqadd_s32(int32x2_t a, int32x2_t b);
+int64x1_t vqadd_s64(int64x1_t a, int64x1_t b);
+uint8x8_t vqadd_u8 (uint8x8_t a, uint8x8_t b);
+uint16x4_t vqadd_u16 (uint16x4_t a, uint16x4_t b);
+uint32x2_t vqadd_u32 (uint32x2_t a, uint32x2_t b);
+uint64x1_t vqadd_u64 (uint64x1_t a, uint64x1_t b);
 
-int8x16_t vqaddq_s8(int8x16_t a, int8x16_t b)
+int8x16_t vqaddq_s8(int8x16_t a, int8x16_t b);
+int16x8_t vqaddq_s16(int16x8_t a, int16x8_t b);
+int32x4_t vqaddq_s32(int32x4_t a, int32x4_t b);
+int64x2_t vqaddq_s64(int64x2_t a, int64x2_t b);
+uint8x16_t vqaddq_u8 (uint8x16_t a, uint8x16_t b);
+uint16x8_t vqaddq_u16 (uint16x8_t a, uint16x8_t b);
+uint32x4_t vqaddq_u32 (uint32x4_t a, uint32x4_t b);
+uint64x2_t vqaddq_u64 (uint64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vqaddq_s8(a, b);
+
 a:      50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65
 b:      73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88
 result: 123 125 127 127 127 127 127 127 127 127 127 127 127 127 127 127
