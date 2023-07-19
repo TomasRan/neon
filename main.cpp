@@ -201,10 +201,10 @@ void test_vraddhn_high_s16() {
 void test_vmulq_u8() {
     std::shared_ptr<int8_t> d_int8_1 = create_data<int8_t>(16, 4);
     std::shared_ptr<int8_t> d_int8_2 = create_data<int8_t>(16, 5);
-    int8x16_t op1 = vld1q_s8(d_int8_1.get());
-    int8x16_t op2 = vld1q_s8(d_int8_2.get());
-    int8x16_t res = vmulq_s8(op1, op2);
-    print_op2(8, &op1, 8, &op2, 8, &res);
+    int8x16_t a = vld1q_s8(d_int8_1.get());
+    int8x16_t b = vld1q_s8(d_int8_2.get());
+    int8x16_t res = vmulq_s8(a, b);
+    print_op2(8, &a, 8, &b, 8, &res);
 }
 
 void test_vmulxq_f32() {

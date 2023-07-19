@@ -512,14 +512,37 @@ result: 120 121 122 123 124 125 126 127 3 3 3 3 3 3 3 3
 
 #### 乘法运算
 
-**1.  vmul_<数据类型简写> （64bit）/  vmulq_<数据类型简写> （128bit）**
+**1.  vmul_<类型简写>  /  vmulq_<类型简写>**
 
 **说明：** 对应通道的数据相乘。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x16_t vmulq_s8(int8x16_t a, int8x16_t b)
+int8x8_t vmul_s8(int8x8_t a, int8x8_t b);
+int16x4_t vmul_s16(int16x4_t a, int16x4_t b);
+int32x2_t vmul_s32(int32x2_t a, int32x2_t b);
+uint8x8_t vmul_u8(uint8x8_t a, uint8x8_t b);
+uint16x4_t vmul_u16(uint16x4_t a, uint16x4_t b);
+uint32x2_t vmul_u32(uint32x2_t a, uint32x2_t b);
+float32x2_t vmul_f32(float32x2_t a, float32x2_t b);
+float64x1_t vmul_f64(float64x1_t a, float64x1_t b);
+
+int8x16_t vmulq_s8(int8x16_t a, int8x16_t b);
+int16x8_t vmulq_s16(int16x8_t a, int16x8_t b);
+int32x4_t vmulq_s32(int32x4_t a, int32x4_t b);
+uint8x16_t vmulq_u8(uint8x16_t a, uint8x16_t b);
+uint16x8_t vmulq_u16(uint16x8_t a, uint16x8_t b);
+uint32x4_t vmulq_u32(uint32x4_t a, uint32x4_t b);
+float32x4_t vmulq_f32(float32x4_t a, float32x4_t b);
+float64x2_t vmulq_f64(float64x2_t a, float64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vmulq_s8(a, b);
+
 a:      4  5  6  7  8  9  10  11
 b:      5  6  7  8  9  10 11  12
 result: 20 30 42 56 72 90 110 -124
