@@ -140,22 +140,13 @@ void test_vqaddq_s8() {
     print_op2(16, &a, 16, &b, 16, &res);
 }
 
-void test_vuqadd_s8() {
-    std::shared_ptr<int8_t> d_int8_1 = create_data<int8_t>(8, 50);
-    std::shared_ptr<uint8_t> d_uint8_2 = create_data<uint8_t>(8, 129);
-    int8x8_t op1 = vld1_s8(d_int8_1.get());
-    uint8x8_t op2 = vld1_u8(d_uint8_2.get());
-    int8x8_t res = vuqadd_s8(op1, op2);
-    print_op2(8, &op1, 8, &op2, 8, &res);
-}
-
 void test_vuqaddq_s8() {
     std::shared_ptr<int8_t> d_int8_1 = create_data<int8_t>(16, 50);
     std::shared_ptr<uint8_t> d_uint8_2 = create_data<uint8_t>(16, 129);
-    int8x16_t op1 = vld1q_s8(d_int8_1.get());
-    uint8x16_t op2 = vld1q_u8(d_uint8_2.get());
-    int8x16_t res = vuqaddq_s8(op1, op2);
-    print_op2(16, &op1, 16, &op2, 16, &res);
+    int8x16_t a = vld1q_s8(d_int8_1.get());
+    uint8x16_t b = vld1q_u8(d_uint8_2.get());
+    int8x16_t res = vuqaddq_s8(a, b);
+    print_op2(16, &a, 16, &b, 16, &res);
 }
 
 void test_vsqadd_u8() {
@@ -305,7 +296,6 @@ int main(int argc, char** argv) {
     //test_vhaddq_s8();
     //test_vrhaddq_s8();
     //test_vqaddq_s8();
-    //test_vuqadd_s8();
     //test_vuqaddq_s8();
     //test_vsqadd_u8();
     //test_vsqaddq_u8();

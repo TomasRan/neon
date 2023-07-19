@@ -333,26 +333,36 @@ uint64x2_t vqaddq_u64 (uint64x2_t a, uint64x2_t b);
 ```cpp
 int8x16_t result = vqaddq_s8(a, b);
 
-a:      50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65
-b:      73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88
+a:      50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65
+b:      73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88
 result: 123 125 127 127 127 127 127 127 127 127 127 127 127 127 127 127
 ```
 
 <br>
 
-**10. vuqadd_<数据类型简写> （64bit）/ vuqaddq_<数据类型简写> （128bit）**
+**9. vuqadd_<类型简写>  /  vuqaddq_<类型简写>**
 
 **说明：** 饱和指令；有符号数a和无符合数b对应通道元素相加，超出范围的自动限制在有符号数表示范围内。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x8_t vuqadd_s8(int8x8_t a, uint8x8_t)
-a:      50  51  52  53  54  55  56  57
-b:      129 130 131 132 133 134 135 136
-result: 127 127 127 127 127 127 127 127
+int8x8_t vuqadd_s8 (int8x8_t a, uint8x8_t b);
+int16x4_t vuqadd_s16 (int16x4_t a, uint16x4_t b);
+int32x2_t vuqadd_s32 (int32x2_t a, uint32x2_t b);
+int64x1_t vuqadd_s64 (int64x1_t a, uint64x1_t b);
 
-int8x16_t vuqaddq_s8(int8x16_t a, uint8x16_t)
+int8x16_t vuqaddq_s8 (int8x16_t a, uint8x16_t b);
+int16x8_t vuqaddq_s16 (int16x8_t a, uint16x8_t b);
+int32x4_t vuqaddq_s32 (int32x4_t a, uint32x4_t b);
+int64x2_t vuqaddq_s64 (int64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vuqaddq_s8(a, b);
+
 a:      50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65
 b:      129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
 result: 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127
