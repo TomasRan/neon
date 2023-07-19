@@ -314,18 +314,18 @@ int16x4_t vqadd_s16(int16x4_t a, int16x4_t b);
 int32x2_t vqadd_s32(int32x2_t a, int32x2_t b);
 int64x1_t vqadd_s64(int64x1_t a, int64x1_t b);
 uint8x8_t vqadd_u8 (uint8x8_t a, uint8x8_t b);
-uint16x4_t vqadd_u16 (uint16x4_t a, uint16x4_t b);
-uint32x2_t vqadd_u32 (uint32x2_t a, uint32x2_t b);
-uint64x1_t vqadd_u64 (uint64x1_t a, uint64x1_t b);
+uint16x4_t vqadd_u16(uint16x4_t a, uint16x4_t b);
+uint32x2_t vqadd_u32(uint32x2_t a, uint32x2_t b);
+uint64x1_t vqadd_u64(uint64x1_t a, uint64x1_t b);
 
 int8x16_t vqaddq_s8(int8x16_t a, int8x16_t b);
 int16x8_t vqaddq_s16(int16x8_t a, int16x8_t b);
 int32x4_t vqaddq_s32(int32x4_t a, int32x4_t b);
 int64x2_t vqaddq_s64(int64x2_t a, int64x2_t b);
-uint8x16_t vqaddq_u8 (uint8x16_t a, uint8x16_t b);
-uint16x8_t vqaddq_u16 (uint16x8_t a, uint16x8_t b);
-uint32x4_t vqaddq_u32 (uint32x4_t a, uint32x4_t b);
-uint64x2_t vqaddq_u64 (uint64x2_t a, uint64x2_t b);
+uint8x16_t vqaddq_u8(uint8x16_t a, uint8x16_t b);
+uint16x8_t vqaddq_u16(uint16x8_t a, uint16x8_t b);
+uint32x4_t vqaddq_u32(uint32x4_t a, uint32x4_t b);
+uint64x2_t vqaddq_u64(uint64x2_t a, uint64x2_t b);
 ```
 
 **调用示例：**
@@ -348,14 +348,14 @@ result: 123 125 127 127 127 127 127 127 127 127 127 127 127 127 127 127
 
 ```cpp
 int8x8_t vuqadd_s8 (int8x8_t a, uint8x8_t b);
-int16x4_t vuqadd_s16 (int16x4_t a, uint16x4_t b);
-int32x2_t vuqadd_s32 (int32x2_t a, uint32x2_t b);
-int64x1_t vuqadd_s64 (int64x1_t a, uint64x1_t b);
+int16x4_t vuqadd_s16(int16x4_t a, uint16x4_t b);
+int32x2_t vuqadd_s32(int32x2_t a, uint32x2_t b);
+int64x1_t vuqadd_s64(int64x1_t a, uint64x1_t b);
 
-int8x16_t vuqaddq_s8 (int8x16_t a, uint8x16_t b);
-int16x8_t vuqaddq_s16 (int16x8_t a, uint16x8_t b);
-int32x4_t vuqaddq_s32 (int32x4_t a, uint32x4_t b);
-int64x2_t vuqaddq_s64 (int64x2_t a, uint64x2_t b);
+int8x16_t vuqaddq_s8(int8x16_t a, uint8x16_t b);
+int16x8_t vuqaddq_s16(int16x8_t a, uint16x8_t b);
+int32x4_t vuqaddq_s32(int32x4_t a, uint32x4_t b);
+int64x2_t vuqaddq_s64(int64x2_t a, uint64x2_t b);
 ```
 
 **调用示例：**
@@ -370,19 +370,29 @@ result: 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127
 
 <br>
 
-**11. vsqadd_<数据类型简写> （64bit）/ vsqaddq_<数据类型简写> （128bit）**
+**10. vsqadd_<类型简写>  /  vsqaddq_<类型简写>**
 
 **说明：** 饱和指令；无符号数a和有符号数b对应通道元素相加，超出范围自动限制在无符号数表示范围内。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-uint8x8_t vsqadd_u8(uint8x8_t a, int8x8_t b)
-a:      210 211 212 213 214 215 216 217
-b:      40  41  42  43  44  45  46  47
-result: 250 252 254 255 255 255 255 255
+uint8x8_t vsqadd_u8 (uint8x8_t a, int8x8_t b);
+uint16x4_t vsqadd_u16(uint16x4_t a, int16x4_t b);
+uint32x2_t vsqadd_u32(uint32x2_t a, int32x2_t b);
+uint64x1_t vsqadd_u64(uint64x1_t a, int64x1_t b);
 
-uint8x16_t vsqaddq_u8(uint8x16_t a, int8x16_t b)
+uint8x16_t vsqaddq_u8(uint8x16_t a, int8x16_t b);
+uint16x8_t vsqaddq_u16(uint16x8_t a, int16x8_t b);
+uint32x4_t vsqaddq_u32(uint32x4_t a, int32x4_t b);
+uint64x2_t vsqaddq_u64(uint64x2_t a, int64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+uint8x16_t result = vsqaddq_u8(a, b);
+
 a:      210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225
 b:      -3  -2  -1  0   1   2   3   4   5   6   7   8   9   10  11  12
 result: 207 209 211 213 215 217 219 221 223 225 227 229 231 233 235 237
