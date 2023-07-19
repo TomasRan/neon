@@ -400,9 +400,9 @@ result: 207 209 211 213 215 217 219 221 223 225 227 229 231 233 235 237
 
 <br>
 
-**12. vaddhn_<数据类型简写>**
+**11. vaddhn_<类型简写>**
 
-**说明：** 窄指令；a和b对应通道元素相加，相加结果的高位部分存储到最终结果数据中。
+**说明：** 窄指令；两个向量的相应元素相加，并返回每个和的最高有效位的一半，结果被截断。
 
 **函数原型：**
 
@@ -427,9 +427,9 @@ result: 1   1   1   2   2   2   2   2
 
 <br>
 
-**13. vaddhn_high_<数据类型简写>**
+**12. vaddhn_high_<类型简写>**
 
-**说明：** 窄指令；r的值存放到结果数据的前半段；a和b对应通道元素相加，相加结果的高位部分存储到结果数据的后半段。
+**说明：** 窄指令；向量r的值存放到结果数据的前半段；向量a和b的相应元素相加，并返回每个和的最高有效位的一半存储到结果数据的后半段，结果被截断。
 
 **函数原型：**
 
@@ -455,29 +455,53 @@ result: 120 121 122 123 124 125 126 127 1 1 1 2 2 2 2 2
 
 <br>
 
-**14. vraddhn_<数据类型简写>**  tocheck
+**13. vraddhn_<类型简写>**
 
-**说明：** 窄指令；a和b对应通道元素相加，将求和的一半（高位部分）存储到结果数据中。
+**说明：** 窄指令；两个向量的相应元素相加，并返回每个和的最高有效位的一半，结果四舍五入。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x8_t vraddhn_s16(int16x8_t a, int16x8_t b)
-a:      66 67 68 69 70 71 72 73
-b:      60 61 62 63 64 65 66 67
-result: 0  1  1  1  1  1  1  1
+int8x8_t vraddhn_s16(int16x8_t a, int16x8_t b);
+int16x4_t vraddhn_s32(int32x4_t a, int32x4_t b);
+int32x2_t vraddhn_s64(int64x2_t a, int64x2_t b);
+uint8x8_t vraddhn_u16(uint16x8_t a, uint16x8_t b);
+uint16x4_t vraddhn_u32(uint32x4_t a, uint32x4_t b);
+uint32x2_t vraddhn_u64(uint64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x8_t result = vraddhn_s16(a, b);
+
+a: 254 255 256 257 258 259 260 261
+b: 253 254 255 256 257 258 259 260
+result: 2 2 2 2 2 2 2 2
 ```
 
 <br>
 
-**15. vraddhn_high_<数据类型简写>**
+**14. vraddhn_high_<类型简写>**
 
-**说明：** 窄指令；r的值存放到结果数据的低位部分；a和b对应通道相加，将求和的一半（高位部分）存储到结果数据中（低位部分超过可表示范围的一半则进1）
+**说明：** 窄指令；向量r的值存放到结果数据的前半段；向量a和b的相应元素相加，并返回每个和的最高有效位的一半存储到结果数据的后半段，结果四舍五入。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x16_t vraddhn_high_s16(int8x8_t r, int16x8_t a, int 16x8_t b)
+int8x16_t vraddhn_high_s16(int8x8_t r, int16x8_t a, int16x8_t b);
+int16x8_t vraddhn_high_s32(int16x4_t r, int32x4_t a, int32x4_t b);
+int32x4_t vraddhn_high_s64(int32x2_t r, int64x2_t a, int64x2_t b);
+uint8x16_t vraddhn_high_u16(uint8x8_t r, uint16x8_t a, uint16x8_t b);
+uint16x8_t vraddhn_high_u32(uint16x4_t r, uint32x4_t a, uint32x4_t b);
+uint32x4_t vraddhn_high_u64(uint32x2_t r, uint64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vraddhn_high_s16(r, a, b);
+
 r:      120 121 122 123 124 125 126 127
 a:      623 624 625 626 627 628 629 630
 b:      50  51  52  53  54  55  56  57
