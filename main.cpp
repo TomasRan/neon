@@ -159,8 +159,8 @@ void test_vsqaddq_u8() {
 }
 
 void test_vaddhn_s16() {
-    std::shared_ptr<int16_t> d_int16_1 = create_data<int16_t>(8, 128);
-    std::shared_ptr<int16_t> d_int16_2 = create_data<int16_t>(8, 50);
+    std::shared_ptr<int16_t> d_int16_1 = create_data<int16_t>(8, 254);
+    std::shared_ptr<int16_t> d_int16_2 = create_data<int16_t>(8, 253);
     int16x8_t op1 = vld1q_s16(d_int16_1.get());
     int16x8_t op2 = vld1q_s16(d_int16_2.get());
     int8x8_t res = vaddhn_s16(op1, op2);
@@ -168,14 +168,14 @@ void test_vaddhn_s16() {
 }
     
 void test_vaddhn_high_s16() {
-    std::shared_ptr<int16_t> d_int16_1 = create_data<int16_t>(8, 250);
-    std::shared_ptr<int16_t> d_int16_2 = create_data<int16_t>(8, 50);
+    std::shared_ptr<int16_t> d_int16_1 = create_data<int16_t>(8, 254);
+    std::shared_ptr<int16_t> d_int16_2 = create_data<int16_t>(8, 253);
     std::shared_ptr<int8_t> d_int8_3 = create_data<int8_t>(8, 120);
-    int16x8_t op1 = vld1q_s16(d_int16_1.get());
-    int16x8_t op2 = vld1q_s16(d_int16_2.get());
-    int8x8_t op3 = vld1_s8(d_int8_3.get());
-    int8x16_t res = vaddhn_high_s16(op3, op1, op2);
-    print_op2(8, &op1, 8, &op2, 16, &res);
+    int16x8_t a = vld1q_s16(d_int16_1.get());
+    int16x8_t b = vld1q_s16(d_int16_2.get());
+    int8x8_t r = vld1_s8(d_int8_3.get());
+    int8x16_t res = vaddhn_high_s16(r, a, b);
+    print_op2(8, &a, 8, &b, 16, &res);
 }
 
 void test_vraddhn_s16() {
@@ -290,7 +290,7 @@ int main(int argc, char** argv) {
     //test_vuqaddq_s8();
     //test_vsqaddq_u8();
     //test_vaddhn_s16();
-    //test_vaddhn_high_s16();
+    test_vaddhn_high_s16();
     //test_vraddhn_s16();
     //test_vraddhn_high_s16();
     //test_vmulq_u8();

@@ -347,7 +347,7 @@ result: 123 125 127 127 127 127 127 127 127 127 127 127 127 127 127 127
 **函数原型：**
 
 ```cpp
-int8x8_t vuqadd_s8 (int8x8_t a, uint8x8_t b);
+int8x8_t vuqadd_s8(int8x8_t a, uint8x8_t b);
 int16x4_t vuqadd_s16(int16x4_t a, uint16x4_t b);
 int32x2_t vuqadd_s32(int32x2_t a, uint32x2_t b);
 int64x1_t vuqadd_s64(int64x1_t a, uint64x1_t b);
@@ -377,7 +377,7 @@ result: 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127 127
 **函数原型：**
 
 ```cpp
-uint8x8_t vsqadd_u8 (uint8x8_t a, int8x8_t b);
+uint8x8_t vsqadd_u8(uint8x8_t a, int8x8_t b);
 uint16x4_t vsqadd_u16(uint16x4_t a, int16x4_t b);
 uint32x2_t vsqadd_u32(uint32x2_t a, int32x2_t b);
 uint64x1_t vsqadd_u64(uint64x1_t a, int64x1_t b);
@@ -402,31 +402,55 @@ result: 207 209 211 213 215 217 219 221 223 225 227 229 231 233 235 237
 
 **12. vaddhn_<数据类型简写>**
 
-**说明：** 窄指令；a和b对应通道元素相加，将结果的一半（高位部分）存储到最终结果数据中。
+**说明：** 窄指令；a和b对应通道元素相加，相加结果的高位部分存储到最终结果数据中。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x8_t vaddhn_s16(int16x8_t a, int16x8_t b)
-a:      257 258 259 260 261 262 263 264
-b:      50  51  52  53  54  55  56  57
-result: 1   1   1   1   1   1   1   1
+int8x8_t vaddhn_s16(int16x8_t a, int16x8_t b);
+int16x4_t vaddhn_s32(int32x4_t a, int32x4_t b);
+int32x2_t vaddhn_s64(int64x2_t a, int64x2_t b);
+uint8x8_t vaddhn_u16(uint16x8_t a, uint16x8_t b);
+uint16x4_t vaddhn_u32(uint32x4_t a, uint32x4_t b);
+uint32x2_t vaddhn_u64(uint64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x8_t result = vaddhn_s16(a, b);
+
+a:      254 255 256 257 258 259 260 261
+b:      253 254 255 256 257 258 259 260
+result: 1   1   1   2   2   2   2   2
 ```
 
 <br>
 
 **13. vaddhn_high_<数据类型简写>**
 
-**说明：** 窄指令；r的值存放到结果数据的低位部分；a和b对应通道元素相加，将求和结果的一半（高位部分）存储到结果数据的另一半（高位部分）。
+**说明：** 窄指令；r的值存放到结果数据的前半段；a和b对应通道元素相加，相加结果的高位部分存储到结果数据的后半段。
 
-调用示例：
+**函数原型：**
 
 ```cpp
-int8x16_t vaddhn_high_s16(int8x8_t r, int16x8_t a, int 16x8_t b)
+int8x16_t vaddhn_high_s16(int8x8_t r, int16x8_t a, int16x8_t b);
+int16x8_t vaddhn_high_s32(int16x4_t r, int32x4_t a, int32x4_t b);
+int32x4_t vaddhn_high_s64(int32x2_t r, int64x2_t a, int64x2_t b);
+uint8x16_t vaddhn_high_u16(uint8x8_t r, uint16x8_t a, uint16x8_t b);
+uint16x8_t vaddhn_high_u32(uint16x4_t r, uint32x4_t a, uint32x4_t b);
+uint32x4_t vaddhn_high_u64(uint32x2_t r, uint64x2_t a, uint64x2_t b);
+```
+
+**调用示例：**
+
+```cpp
+int8x16_t result = vaddhn_high_s16(r, a, b);
+
 r:      120 121 122 123 124 125 126 127
-a:      250 251 252 253 254 255 256 257
-b:      50  51  52  53  54  55  56  57
-result: 120 121 122 123 124 125 126 127 1 1 1 1 1 1 1 1
+a:      254 255 256 257 258 259 260 261
+b:      253 254 255 256 257 258 259 260
+result: 120 121 122 123 124 125 126 127 1 1 1 2 2 2 2 2
 ```
 
 <br>
