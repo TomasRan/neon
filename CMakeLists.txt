@@ -14,4 +14,13 @@ project(neon_test C CXX)
 
 add_definitions(-std=c++11)
 
-add_executable(neon_test main.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/test)
+
+add_subdirectory(third_party/gtest)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+file(GLOB_RECURSE test_sources test/*.cpp)
+
+add_executable(neon_test ${test_sources})
+
+target_link_libraries(neon_test gtest)
